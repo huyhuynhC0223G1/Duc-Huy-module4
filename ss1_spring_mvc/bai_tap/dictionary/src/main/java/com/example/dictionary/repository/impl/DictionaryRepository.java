@@ -8,14 +8,14 @@ import java.util.Map;
 
 @Repository
 public class DictionaryRepository implements IDictionaryRepository {
+    private static Map<String, String> dictionarymap = new HashMap<>();
+    static {
+        dictionarymap.put("hello", "xin chào");
+        dictionarymap.put("goodbye", "chào tạm biệt");
+        dictionarymap.put("book", "quyển sách");
+        dictionarymap.put("pen", "cái bút");
+    }
     public Map<String, String> dictionary() {
-        return new HashMap<String, String>() {
-            {
-                put("hello", "xin chào");
-                put("goodbye", "chào tạm biệt");
-                put("book", "quyển sách");
-                put("pen", "cái bút");
-            }
-        };
+        return dictionarymap;
     }
 }
