@@ -1,4 +1,5 @@
 package com.example.quan_li_san_pham.model;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,13 +8,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column (name = "product_name", nullable = false, unique = true)
+    @Column(name = "product_name", nullable = false, unique = true)
     private String name;
-    @Column (name = "describer")
+    @Column(name = "describer")
     private String describe;
-    @Column (name = "producer")
+    @Column(name = "producer")
     private String producer;
-    @Column (name = "price")
+    @Column(name = "price")
     private double price;
 
     public Product() {

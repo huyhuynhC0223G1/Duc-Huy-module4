@@ -19,10 +19,12 @@ public class ConnectionUtils {
             e.printStackTrace();
         }
     }
-    public static SessionFactory getSessionFactory(){
+
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    public static EntityManager getEntityManager(){
+
+    public static EntityManager getEntityManager() {
         return entityManager;
     }
 }
