@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,39 +32,62 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String createProduct(Product product) {
+    public String createProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productService.create(product);
+        redirectAttributes.addFlashAttribute("message", "Successfully Added New");
         return "redirect:/product";
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "/edit";
+    public String edit(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
+        if (productService.checkProductId(id) == -1) {
+            redirectAttributes.addFlashAttribute("error", "id not found");
+            return "redirect:/product";
+        } else {
+            model.addAttribute("product", productService.findById(id));
+            return "/edit";
+        }
     }
 
     @PostMapping("/update")
-    public String update(Product product) {
+    public String update(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productService.update(product.getId(), product);
+        redirectAttributes.addFlashAttribute("message", "Successfully Update");
         return "redirect:/product";
     }
 
     @GetMapping("{id}/delete")
-    public String delete(@PathVariable int id) {
-        productService.remove(id);
-        return "redirect:/product";
+    public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        if (productService.checkProductId(id) == -1) {
+            redirectAttributes.addFlashAttribute("error", "id not found");
+            return "redirect:/product";
+        } else {
+            productService.remove(id);
+            redirectAttributes.addFlashAttribute("message", "Successfully Delete");
+            return "redirect:/product";
+        }
     }
 
     @GetMapping("/{id}/detail")
-    public String getDetail(@PathVariable int id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "/detail";
+    public String getDetail(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
+        if (productService.checkProductId(id) == -1) {
+            redirectAttributes.addFlashAttribute("error", "id not found");
+            return "redirect:/product";
+        } else {
+            model.addAttribute("product", productService.findById(id));
+            return "/detail";
+        }
     }
 
     @GetMapping("/search")
-    public String getSeach(@RequestParam("search") String search, Model model) {
+    public String getSeach(@RequestParam("search") String search, Model model, RedirectAttributes redirectAttributes) {
         List<Product> productList = productService.findSearch(search);
-        model.addAttribute("productlist", productList);
-        return "/home";
+        if (productList.size() == 0) {
+            redirectAttributes.addFlashAttribute("notsearch", "product not found");
+            return "redirect:/product";
+        } else {
+            model.addAttribute("productlist", productList);
+            return "/home";
+        }
     }
 }
