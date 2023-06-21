@@ -38,7 +38,7 @@ public class ProductController {
         return "redirect:/product";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
         if (productService.checkProductId(id) == -1) {
             redirectAttributes.addFlashAttribute("error", "id not found");
@@ -56,7 +56,7 @@ public class ProductController {
         return "redirect:/product";
     }
 
-    @GetMapping("{id}/delete")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
         if (productService.checkProductId(id) == -1) {
             redirectAttributes.addFlashAttribute("error", "id not found");
@@ -68,7 +68,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/{id}/detail")
+    @GetMapping("/detail/{id}")
     public String getDetail(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
         if (productService.checkProductId(id) == -1) {
             redirectAttributes.addFlashAttribute("error", "id not found");

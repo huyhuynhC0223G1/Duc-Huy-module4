@@ -34,13 +34,13 @@
         <td th:text="${product.getName()}"></td>
         <td th:text="${product.getDescribe()}"></td>
         <td th:text="${product.getPrice()}"></td>
-        <td><a th:href="@{/product/{id}/edit(id=${product.getId()})}">
+        <td><a th:href="@{/product/edit/{id}(id=${product.getId()})}">
             <button type="submit">EDIT</button>
         </a></td>
-        <td><a th:href="@{/product/{id}/delete(id=${product.getId()})}">
+        <td><a th:href="@{/product/delete/{id}(id=${product.getId()})}">
             <button type="submit">DELETE</button>
         </a></td>
-        <td><a th:href="@{/product/{id}/detail(id=${product.getId()})}">
+        <td><a th:href="@{/product/detail/{id}(id=${product.getId()})}">
             <button type="submit">DETAIL</button>
         </a></td>
     </tr>
