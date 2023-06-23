@@ -3,6 +3,7 @@ package com.example.ung_dung_blog_mo_rong.controller;
 
 import com.example.ung_dung_blog_mo_rong.model.Blog;
 import com.example.ung_dung_blog_mo_rong.service.IBlogService;
+import com.example.ung_dung_blog_mo_rong.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,17 +21,20 @@ import java.util.List;
 public class BlogController {
     @Autowired
     private IBlogService blogService;
+    @Autowired
+    private ICategoryService categoryService;
 
     @GetMapping("")
     public String getBlog(@PageableDefault(size = 2, sort = "postingTime", direction = Sort.Direction.DESC)
                                       Pageable pageable, Model model) {
         model.addAttribute("blogList", blogService.findAllByStatusIsFalse(pageable));
-        return "/home";
+        return "home";
     }
 
     @GetMapping("/create")
     public String getCreateForm(Model model) {
         model.addAttribute("blog", new Blog());
+        model.addAttribute("categoryList",categoryService.findAll());
         return "create";
     }
 
@@ -49,6 +53,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("blog", blogService.findById(id));
+            model.addAttribute("categoryList",categoryService.findAll());
             return "/edit";
         }
     }

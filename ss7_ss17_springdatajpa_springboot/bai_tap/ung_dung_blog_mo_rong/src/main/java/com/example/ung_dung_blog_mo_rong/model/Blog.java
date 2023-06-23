@@ -16,6 +16,18 @@ public class Blog {
     @Column(name = "postingTime")
     private LocalDateTime postingTime;
     private boolean status;
+    @ManyToOne
+    @JoinColumn(name = "category", nullable = false)
+    private Category category;
+
+    public Blog(Integer id, String nameBlog, String contentBlog, LocalDateTime postingTime, boolean status, Category category) {
+        this.id = id;
+        this.nameBlog = nameBlog;
+        this.contentBlog = contentBlog;
+        this.postingTime = postingTime;
+        this.status = status;
+        this.category = category;
+    }
 
     public Blog() {
     }
@@ -65,5 +77,13 @@ public class Blog {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
