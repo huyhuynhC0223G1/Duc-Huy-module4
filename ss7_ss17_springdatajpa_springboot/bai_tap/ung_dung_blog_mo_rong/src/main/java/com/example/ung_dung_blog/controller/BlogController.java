@@ -2,6 +2,7 @@ package com.example.ung_dung_blog.controller;
 
 import com.example.ung_dung_blog.model.Blog;
 import com.example.ung_dung_blog.service.IBlogService;
+import com.example.ung_dung_blog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,14 @@ public class BlogController {
     @Autowired
     private IBlogService blogService;
 
+    @Autowired
+    private ICategoryService categoryService;
+
     @GetMapping("")
     public String getBlog(Model model) {
         List<Blog> blogList = blogService.findAll();
         model.addAttribute("blogList", blogList);
+        model.addAttribute("categorylist", categoryService.findAll());
         return "/home";
     }
 

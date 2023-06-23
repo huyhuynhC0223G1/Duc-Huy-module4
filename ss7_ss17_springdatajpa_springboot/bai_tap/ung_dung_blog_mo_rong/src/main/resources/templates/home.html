@@ -40,6 +40,7 @@
                     <h5 class="card-title" th:text="${blog.getNameBlog()}"></h5></a>
                 <p class="card-text" th:text="${blog.getContentBlog()}"></p>
                 <p class="card-text" th:text="${blog.getPostingTime()}"></p>
+                <p class="card-text" th:text="${blog.getCategory().getNameCategory}"></p>
                 <a th:href="@{/blog/edit/{id}(id=${blog.getId()})}">
                     <button type="submit">EDIT</button>
                 </a>

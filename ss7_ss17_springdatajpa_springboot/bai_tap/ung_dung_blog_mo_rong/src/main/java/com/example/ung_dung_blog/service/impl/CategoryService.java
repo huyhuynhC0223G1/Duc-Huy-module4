@@ -1,6 +1,7 @@
 package com.example.ung_dung_blog.service.impl;
 
 import com.example.ung_dung_blog.model.Blog;
+import com.example.ung_dung_blog.model.Category;
 import com.example.ung_dung_blog.repository.ICategoryRepository;
 import com.example.ung_dung_blog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ public class CategoryService implements ICategoryService {
     @Autowired
     private ICategoryRepository categoryRepository;
     @Override
-    public List<Blog> findAll() {
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 }

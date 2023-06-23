@@ -11,6 +11,7 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nameBlog;
+    @Column(name = "contentBlog", columnDefinition = "text")
     private String contentBlog;
     private LocalDateTime postingTime;
     @ManyToOne
@@ -59,4 +60,21 @@ public class Blog {
     public void setPostingTime(LocalDateTime postingTime) {
         this.postingTime = postingTime;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Boolean getFlagDelete() {
+        return isFlagDelete;
+    }
+
+    public void setFlagDelete(Boolean flagDelete) {
+        isFlagDelete = flagDelete;
+    }
 }
+
