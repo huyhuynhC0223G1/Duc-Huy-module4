@@ -52,10 +52,14 @@ public class BlogController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
-        blog.setPostingTime(LocalDateTime.now());
-        blogService.update(blog);
-        redirectAttributes.addFlashAttribute("message", "Successfully Update");
-        return "redirect:/blog";
+        if (blogService.findById(blog.getId()) == null) {
+            redirectAttributes.addFlashAttribute("error", "id not found");
+            return "redirect:/blog";
+        }else {
+            blogService.update(blog);
+            redirectAttributes.addFlashAttribute("message", "Successfully Update");
+            return "redirect:/blog";
+        }
     }
 
     @GetMapping("/delete/{id}")

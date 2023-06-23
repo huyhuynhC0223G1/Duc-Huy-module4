@@ -12,7 +12,7 @@ public class Blog {
     private Integer id;
     @Column(name = "nameBlog")
     private String nameBlog;
-    @Column(name = "contentBlog")
+    @Column(name = "contentBlog", columnDefinition = "varchar(55555)")
     private String contentBlog;
     @Column(name = "postingTime")
     private LocalDateTime postingTime;
