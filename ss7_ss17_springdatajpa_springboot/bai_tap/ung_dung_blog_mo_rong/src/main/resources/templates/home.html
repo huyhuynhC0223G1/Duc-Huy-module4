@@ -40,7 +40,6 @@
                     <h5 class="card-title" th:text="${blog.getNameBlog()}"></h5></a>
                 <p class="card-text" th:text="${blog.getContentBlog()}"></p>
                 <p class="card-text" th:text="${blog.getPostingTime()}"></p>
-                <p class="card-text" th:text="${blog.getCategory().getNameCategory}"></p>
                 <a th:href="@{/blog/edit/{id}(id=${blog.getId()})}">
                     <button type="submit">EDIT</button>
                 </a>
@@ -50,6 +49,12 @@
             </div>
         </div>
     </div>
+</div>
+<div class="d-flex">
+    <a th:if="${blogList.hasPrevious()}"
+       th:href="@{/blog(page=${blogList.number - 1})}">Previous</a>
+    <a class="mx-2" th:if="${blogList.hasNext()}"
+       th:href="@{/blog(page=${blogList.number + 1})}">Next</a>
 </div>
 <script>
     setTimeout(function () {

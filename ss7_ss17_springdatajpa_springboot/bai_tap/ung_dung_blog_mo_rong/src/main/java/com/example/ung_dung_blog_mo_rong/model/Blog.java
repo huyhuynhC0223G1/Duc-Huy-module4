@@ -1,7 +1,6 @@
-package com.example.ung_dung_blog.model;
+package com.example.ung_dung_blog_mo_rong.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,14 +9,13 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(name = "nameBlog")
     private String nameBlog;
     @Column(name = "contentBlog", columnDefinition = "text")
     private String contentBlog;
+    @Column(name = "postingTime")
     private LocalDateTime postingTime;
-    @ManyToOne
-    @JoinColumn(name = "id_category", nullable = false)
-    private Category category;
-    private Boolean isFlagDelete = true;
+    private boolean status;
 
     public Blog() {
     }
@@ -61,20 +59,11 @@ public class Blog {
         this.postingTime = postingTime;
     }
 
-    public Category getCategory() {
-        return category;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Boolean getFlagDelete() {
-        return isFlagDelete;
-    }
-
-    public void setFlagDelete(Boolean flagDelete) {
-        isFlagDelete = flagDelete;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
-

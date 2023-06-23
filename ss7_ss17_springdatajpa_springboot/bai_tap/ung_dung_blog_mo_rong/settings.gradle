@@ -5,4 +5,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'ung_dung_blog'
+rootProject.name = 'ung_dung_blog_mo_rong'
