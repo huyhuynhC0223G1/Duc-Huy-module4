@@ -19,9 +19,12 @@
     <script src="https://kit.fontawesome.com/4bf93b0ca4.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<form class="d-flex" role="search" method="get" action="/blog/search">
+    <input name="search" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 <p id="success" th:if="${notsearch != null}" th:text="${notsearch}" style="color: red"></p>
-<h2>Product list</h2>
+<h2>Blog list</h2>
 <a th:href="@{/blog/create}">
     <button type="submit"> Add New Blog</button>
 </a>

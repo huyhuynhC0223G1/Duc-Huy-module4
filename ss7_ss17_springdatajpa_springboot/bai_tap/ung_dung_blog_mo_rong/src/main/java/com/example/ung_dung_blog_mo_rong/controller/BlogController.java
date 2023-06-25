@@ -5,6 +5,7 @@ import com.example.ung_dung_blog_mo_rong.model.Blog;
 import com.example.ung_dung_blog_mo_rong.service.IBlogService;
 import com.example.ung_dung_blog_mo_rong.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -26,7 +27,7 @@ public class BlogController {
 
     @GetMapping("")
     public String getBlog(@PageableDefault(size = 2, sort = "postingTime", direction = Sort.Direction.DESC)
-                                      Pageable pageable, Model model) {
+                                  Pageable pageable, Model model) {
         model.addAttribute("blogList", blogService.findAllByStatusIsFalse(pageable));
         return "home";
     }
@@ -34,7 +35,7 @@ public class BlogController {
     @GetMapping("/create")
     public String getCreateForm(Model model) {
         model.addAttribute("blog", new Blog());
-        model.addAttribute("categoryList",categoryService.findAll());
+        model.addAttribute("categoryList", categoryService.findAll());
         return "create";
     }
 
@@ -53,7 +54,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("blog", blogService.findById(id));
-            model.addAttribute("categoryList",categoryService.findAll());
+            model.addAttribute("categoryList", categoryService.findAll());
             return "/edit";
         }
     }
@@ -63,7 +64,7 @@ public class BlogController {
         if (blogService.findById(blog.getId()) == null) {
             redirectAttributes.addFlashAttribute("error", "id not found");
             return "redirect:/blog";
-        }else {
+        } else {
             blogService.update(blog);
             redirectAttributes.addFlashAttribute("message", "Successfully Update");
             return "redirect:/blog";
@@ -93,15 +94,15 @@ public class BlogController {
         }
     }
 
-//    @GetMapping("/search")
-//    public String getSeach(@RequestParam("search") String search, Model model, RedirectAttributes redirectAttributes) {
-//        List<Blog> blogList = blogService.findById(search);
-//        if (blogList.size() == 0) {
-//            redirectAttributes.addFlashAttribute("notsearch", "Blog not found");
-//            return "redirect:/blog";
-//        } else {
-//            model.addAttribute("blogList", productList);
-//            return "/home";
-//        }
-//    }
+    @GetMapping("/search")
+    public String getSeach(@RequestParam("search") String search, @PageableDefault Pageable pageable, Model model, RedirectAttributes redirectAttributes) {
+        Page<Blog> blogList = blogService.findByNameBlogContainingAndStatusIsFalse(search, pageable);
+        if (blogList.getSize() == 0) {
+            redirectAttributes.addFlashAttribute("notsearch", "Blog not found");
+            return "redirect:/blog";
+        } else {
+            model.addAttribute("blogList", blogList);
+            return "/home";
+        }
+    }
 }

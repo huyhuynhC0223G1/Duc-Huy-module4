@@ -20,5 +20,7 @@ public interface IBlogService {
     void remove(Integer id);
 
     Page<Blog> findAllByStatusIsFalse(Pageable pageable);
+
+    Page<Blog> findByNameBlogContainingAndStatusIsFalse(String search, Pageable pageable);
 }
 

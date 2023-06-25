@@ -6,9 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public interface ICategoryService {
     List<Category> findAll();
+
     Page<Category> findAllByStratusIsFalse(Pageable pageable);
-    }
+}
 
