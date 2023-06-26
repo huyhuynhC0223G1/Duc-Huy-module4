@@ -17,11 +17,28 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public List<Category> findAll() {
-        return categoryRepository.findAll();
+        return categoryRepository.findAllByStratusIsFalse();
     }
 
     @Override
-    public Page<Category> findAllByStratusIsFalse(Pageable pageable) {
-        return categoryRepository.findAllByStratusIsFalse(pageable);
+    public void create(Category category) {
+        categoryRepository.save(category);
+    }
+
+    @Override
+    public Category findById(Integer id) {
+        return categoryRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void update(Category category) {
+        categoryRepository.save(category);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        Category category = categoryRepository.getCategoryByIdCategoryAndStratusIsFalse(id);
+        category.setStratus(true);
+        categoryRepository.save(category);
     }
 }

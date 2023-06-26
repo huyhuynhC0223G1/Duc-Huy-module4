@@ -11,6 +11,12 @@ import java.util.List;
 public interface ICategoryService {
     List<Category> findAll();
 
-    Page<Category> findAllByStratusIsFalse(Pageable pageable);
+    void create(Category category);
+
+    Category findById(Integer id);
+
+    void update(Category category);
+
+    void remove(Integer id);
 }
 

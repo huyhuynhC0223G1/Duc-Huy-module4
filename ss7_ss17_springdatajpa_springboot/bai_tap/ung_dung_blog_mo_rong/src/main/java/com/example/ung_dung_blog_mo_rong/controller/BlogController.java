@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 @RequestMapping("/blog")
@@ -26,17 +25,17 @@ public class BlogController {
     private ICategoryService categoryService;
 
     @GetMapping("")
-    public String getBlog(@PageableDefault(size = 2, sort = "postingTime", direction = Sort.Direction.DESC)
+    public String getBlog(@PageableDefault(size = 3, sort = "postingTime", direction = Sort.Direction.DESC)
                                   Pageable pageable, Model model) {
         model.addAttribute("blogList", blogService.findAllByStatusIsFalse(pageable));
-        return "home";
+        return "/blog/home";
     }
 
     @GetMapping("/create")
     public String getCreateForm(Model model) {
         model.addAttribute("blog", new Blog());
         model.addAttribute("categoryList", categoryService.findAll());
-        return "create";
+        return "/blog/create";
     }
 
     @PostMapping("/save")
@@ -55,7 +54,7 @@ public class BlogController {
         } else {
             model.addAttribute("blog", blogService.findById(id));
             model.addAttribute("categoryList", categoryService.findAll());
-            return "/edit";
+            return "/blog/edit";
         }
     }
 
@@ -90,7 +89,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("blog", blogService.findById(id));
-            return "/detail";
+            return "/blog/detail";
         }
     }
 
@@ -102,7 +101,7 @@ public class BlogController {
             return "redirect:/blog";
         } else {
             model.addAttribute("blogList", blogList);
-            return "/home";
+            return "/blog/home";
         }
     }
 }

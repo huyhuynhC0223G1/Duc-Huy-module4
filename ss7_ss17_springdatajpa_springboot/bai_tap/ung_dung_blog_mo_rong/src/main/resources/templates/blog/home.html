@@ -19,6 +19,16 @@
     <script src="https://kit.fontawesome.com/4bf93b0ca4.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav class="navbar bg-body-tertiary">
+    <form class="container-fluid justify-content-start">
+        <a th:href="@{/blog}">
+            <button class="btn btn-outline-success me-2" type="button">Home</button>
+        </a>
+        <a th:href="@{/category}">
+            <button class="btn btn-sm btn-outline-secondary" type="button">Category</button>
+        </a>
+    </form>
+</nav>
 <form class="d-flex" role="search" method="get" action="/blog/search">
     <input name="search" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>

@@ -9,5 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ICategoryRepository extends JpaRepository<Category, Integer> {
-    Page<Category> findAllByStratusIsFalse(Pageable pageable);
+    List<Category> findAllByStratusIsFalse();
+
+    Category getCategoryByIdCategoryAndStratusIsFalse(Integer id);
 }
