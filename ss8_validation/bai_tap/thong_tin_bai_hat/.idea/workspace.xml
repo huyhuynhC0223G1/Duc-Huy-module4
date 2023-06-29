@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d9f60e5b-6f1e-4999-996e-9b6fcfa9c0a1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/aop/MainAspect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/configs/MainExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/controller/BorrowBooksController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/model/BorrowBooks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/repository/IBookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/repository/IBorrowBooksRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/service/IBookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/service/IBorrowBooksService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/service/impl/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/java/com/example/demo/service/impl/BorrowBooksService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/resources/templates/500.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/resources/templates/borrow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/resources/templates/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/resources/templates/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss9_aop/bai_tap/demo/src/main/resources/templates/repay.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2RrFdMCBHbc1qzeOe3JuxL7WdO0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Codegym/module_4/ss8_validation/bai_tap/thong_tin_bai_hat",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d9f60e5b-6f1e-4999-996e-9b6fcfa9c0a1" name="Changes" comment="" />
+      <created>1688000379464</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688000379464</updated>
+      <workItem from="1688000380658" duration="13000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
