@@ -40,7 +40,7 @@ public class BorrowBooksController {
             redirectAttributes.addFlashAttribute("message", borrowBooksService.addNewBorrow(book));
             return "redirect:/book";
         }
-        redirectAttributes.addFlashAttribute("message", "The book has been borrowed!");
+        redirectAttributes.addFlashAttribute("error", "The book has been borrowed!");
         return "redirect:/book";
     }
 }

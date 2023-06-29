@@ -32,7 +32,7 @@ public class BookController {
             model.addAttribute("borrowDelete", borrowBooksService.getByCode(code));
             return "repay";
         } else {
-            redirectAttributes.addFlashAttribute("message", "Book is not exist!");
+            redirectAttributes.addFlashAttribute("error", "Book is not exist!");
         }
         return "redirect:/book";
     }
