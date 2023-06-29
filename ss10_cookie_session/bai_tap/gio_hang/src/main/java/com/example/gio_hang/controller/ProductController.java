@@ -55,6 +55,14 @@ public class ProductController {
         return "redirect:/home";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteItem(@PathVariable int id, @ModelAttribute Cart cart, RedirectAttributes redirectAttributes) {
+        Product product = productService.findById(id).get();
+        cart.deleteItem(product);
+        redirectAttributes.addFlashAttribute("message", "Successful delete!");
+        return "redirect:/shopping-cart";
+    }
+
     @GetMapping("/success")
     public String showSuccess() {
         return "/success";

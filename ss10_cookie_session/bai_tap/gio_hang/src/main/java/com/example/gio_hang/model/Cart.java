@@ -79,4 +79,8 @@ public class Cart {
         }
         return payment;
     }
+    public void deleteItem(Product product){
+        Map.Entry<Product, Integer> itemEntry= selectItemInCart(product);
+        products.remove(itemEntry.getKey());
+    }
 }
