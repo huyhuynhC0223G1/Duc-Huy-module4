@@ -29,6 +29,7 @@ public class BookController {
     public String giveBackBook(@RequestParam("code") int code,
                                RedirectAttributes redirectAttributes, Model model) {
         if (borrowBooksService.findByCode(code)) {
+            model.addAttribute("checkcode", code);
             model.addAttribute("borrowDelete", borrowBooksService.getByCode(code));
             return "repay";
         } else {
@@ -38,7 +39,11 @@ public class BookController {
     }
 
     @PostMapping("/repay")
-    public String deleteBorrow(@ModelAttribute BorrowBooks borrowBooks, RedirectAttributes redirectAttributes) {
+    public String deleteBorrow(@ModelAttribute BorrowBooks borrowBooks, @RequestParam int checkcode, RedirectAttributes redirectAttributes) {
+        if (checkcode != borrowBooks.getCode()) {
+            redirectAttributes.addFlashAttribute("error", "Code is not found!");
+            return "redirect:/book";
+        }
         borrowBooksService.deleteBorrowBook(borrowBooks.getId());
         bookService.giveBook(borrowBooksService.findByIdAndFlagIsTrue(borrowBooks.getId()).getBook());
         redirectAttributes.addFlashAttribute("message", "Repay success fully!");
