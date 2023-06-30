@@ -24,6 +24,7 @@
         <button type="submit" style="font-size: 30px">Your cart</button>
     </a>
     <p id="success" th:if="${message != null}" th:text="${message}" style="color: green"></p>
+    <p id="success" th:if="${error != null}" th:text="${error}" style="color: red"></p>
 </div>
 <table class="container table table-bordered">
     <thead class="table-dark">

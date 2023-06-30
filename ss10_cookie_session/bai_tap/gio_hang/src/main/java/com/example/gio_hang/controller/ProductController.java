@@ -29,7 +29,11 @@ public class ProductController {
     }
 
     @GetMapping("/detail/{id}")
-    public String showDetail(@PathVariable("id") int id, Model model) {
+    public String showDetail(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttributes) {
+        if (productService.findById(id) == null) {
+            redirectAttributes.addAttribute("error", "id not found");
+            return "redirect:/home";
+        }
         Product product = this.productService.findById(id).get();
         model.addAttribute("product", product);
         return "/detail";
