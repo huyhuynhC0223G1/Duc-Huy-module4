@@ -16,19 +16,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blog")
+@CrossOrigin("*")
 public class BlogController {
     @Autowired
     private IBlogService blogService;
     @Autowired
     private ICategoryService categoryService;
-
-    @GetMapping()
-    public ResponseEntity<?> getBlogs() {
-        if (blogService.findAllByStatusIsFalse() == null) {
+    @GetMapping("limit/{number}")
+    public ResponseEntity<?> getBlogsLimit(@PathVariable int number){
+        if (blogService.getBlogLimit(number) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(this.blogService.findAllByStatusIsFalse(), HttpStatus.OK);
+        return new ResponseEntity<>(this.blogService.getBlogLimit(number), HttpStatus.OK);
     }
+//    @GetMapping()
+//    public ResponseEntity<?> getBlogs() {
+//        if (blogService.findAllByStatusIsFalse() == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(this.blogService.findAllByStatusIsFalse(), HttpStatus.OK);
+//    }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getBlogDetail(@PathVariable Integer id) {
@@ -62,4 +69,14 @@ public class BlogController {
         this.blogService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping("search/{search}")
+    public ResponseEntity<?> search(@PathVariable String search){
+        List<Blog> blogList = blogService.findByNameBlogContainingAndStatusIsFalse(search);
+        if (blogList.size()==0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(blogList,HttpStatus.OK);
+        }
+    }
+
 }

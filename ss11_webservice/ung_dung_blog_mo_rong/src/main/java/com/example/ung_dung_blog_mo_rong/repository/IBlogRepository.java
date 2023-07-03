@@ -11,7 +11,8 @@ import java.util.List;
 
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     List<Blog> findAllByStatusIsFalse();
-
     Blog getBlogByIdAndStatusIsFalse(Integer id);
-
+    List<Blog> findByNameBlogContainingAndStatusIsFalse(String search);
+    @Query(nativeQuery = true, value = "select * from blog where status = 'false' limit :number")
+    List<Blog> getBlogLimit(int number);
 }

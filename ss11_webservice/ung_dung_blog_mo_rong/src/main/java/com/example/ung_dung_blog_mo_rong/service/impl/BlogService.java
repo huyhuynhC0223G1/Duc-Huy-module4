@@ -42,5 +42,15 @@ public class BlogService implements IBlogService {
         return blogRepository.findAllByStatusIsFalse();
     }
 
+    @Override
+    public List<Blog> findByNameBlogContainingAndStatusIsFalse(String search) {
+        return blogRepository.findByNameBlogContainingAndStatusIsFalse(search);
+    }
+
+    @Override
+    public List<Blog> getBlogLimit(int number) {
+        return blogRepository.getBlogLimit(number);
+    }
+
 
 }

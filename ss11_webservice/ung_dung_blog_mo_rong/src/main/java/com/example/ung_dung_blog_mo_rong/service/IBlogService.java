@@ -16,6 +16,7 @@ public interface IBlogService {
     void remove(Integer id);
 
     List<Blog> findAllByStatusIsFalse();
-
+    List<Blog> findByNameBlogContainingAndStatusIsFalse(String search);
+    List<Blog> getBlogLimit(int number);
 }
 
