@@ -1,5 +1,8 @@
 package com.example.spring_security.controller;
 
+
+import com.example.spring_security.util.WebUtils;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -7,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.util.WebUtils;
 
-import javax.xml.ws.WebFault;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import java.security.Principal;
 
 @Controller
