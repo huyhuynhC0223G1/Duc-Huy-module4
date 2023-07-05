@@ -1,46 +1,44 @@
-package com.example.spring_security.controller;
+package com.example.controller;
+
+import java.security.Principal;
 
 
-import com.example.spring_security.util.WebUtils;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import com.example.util.WebUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.security.Principal;
-
 @Controller
-public class SpringSecurityController {
-    @GetMapping("")
-    public String getWelcom(Model model) {
+public class MainController {
+
+    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
-        model.addAttribute("massege", "Welcome page");
-        return "/welcome";
+        model.addAttribute("message", "This is welcome page!");
+        return "welcome";
     }
 
-    @GetMapping("/admin")
-    public String getAdmin(Model model, Principal principal) {
-        User loginUser = (User) ((Authentication) principal).getPrincipal();
-        String userInfo = WebUtils.toString(loginUser);
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(Model model, Principal principal) {
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+        String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
         return "admin";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLogin(Model model) {
+    public String loginPage(Model model) {
+
         return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String getLogout(Model model) {
+    public String logoutSuccessfulPage(Model model) {
         model.addAttribute("title", "Logout");
-        return "/logout";
+        return "logout";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -50,7 +48,7 @@ public class SpringSecurityController {
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
-        return "/user";
+        return "user";
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
@@ -59,9 +57,11 @@ public class SpringSecurityController {
             User loginedUser = (User) ((Authentication) principal).getPrincipal();
             String userInfo = WebUtils.toString(loginedUser);
             model.addAttribute("userInfo", userInfo);
-            model.addAttribute("message", "Hello" + principal.getName()
-                    + "<br>You do not have permission to access this page!");
+            String message = "Hi " + principal.getName() //
+                    + "<br> You do not have permission to access this page!";
+            model.addAttribute("message", message);
         }
-        return "/403";
+        return "403";
     }
+
 }
